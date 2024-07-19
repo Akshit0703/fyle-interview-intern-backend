@@ -11,7 +11,7 @@ principal_resources = Blueprint('principal_resources', __name__)
 @decorators.authenticate_principal
 def list_assignments(p):
     """Returns list of assignments"""
-    principals_assignments = Assignment.get_assignments_by_teacher()
+    principals_assignments = Assignment.get_assignments_by_teacher(p.teacher_id)
     principals_assignments_dump = AssignmentSchema().dump(principals_assignments, many=True)
     return APIResponse.respond(data=principals_assignments_dump)
 
